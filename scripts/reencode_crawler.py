@@ -26,15 +26,20 @@ SLEEP_TIME = 1200
 
 class ReEncodeCrawler:
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         self.crawl_start = CRAWL_START
         self.crawl_end = CRAWL_EPOCH
         self.crawl_suffix = CRAWL_SUFFIX
         self.url_query = None
+        self.run_full_legacy = kwargs.get('full_legacy', False)
 
     def crawl(self):
-        self._url_query()
-        self._run_reencode()
+        if self.run_full_legacy is False:
+            self._url_query()
+            self._run_reencode()
+            return None
+
+        self._clean_legacy_objects()
 
     def _url_query(self):
         self.url_query = URL.objects.filter(
@@ -70,10 +75,11 @@ class ReEncodeCrawler:
             batching += 1
 
     def _clean_legacy_objects(self):
-        pass
-        ## Get all urls
-        ## Copy to root S3 dir (?)
-        ## Send URLs to VAL
+        video_query = Video.objects.filter(
+            video_trans_start__lt=self.crawl_start,
+        )
+        print len(video_query)
+
         ## Send HLS object to Encode
 
 
@@ -84,13 +90,3 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
-
-
-'''
-Manual HEAL IDs
-
-GEOB3DAE2017-V006300
-
-
-
-'''
