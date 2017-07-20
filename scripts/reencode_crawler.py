@@ -22,7 +22,7 @@ BATCH_SIZE = 10
 SLEEP_TIME = 1200
 
 
-# NOTE: MSXSBVCP2017-V002600_100
+# TODO: Update for legacy objects
 
 class ReEncodeCrawler:
 
@@ -34,7 +34,7 @@ class ReEncodeCrawler:
 
     def crawl(self):
         self._url_query()
-        # self._run_reencode()
+        self._run_reencode()
 
     def _url_query(self):
         self.url_query = URL.objects.filter(
@@ -45,7 +45,6 @@ class ReEncodeCrawler:
             )
         )
         print len(self.url_query)
-
 
     def _run_reencode(self):
         batching = 0
@@ -69,6 +68,13 @@ class ReEncodeCrawler:
             )
             VH.send_encodes()
             batching += 1
+
+    def _clean_legacy_objects(self):
+        pass
+        ## Get all urls
+        ## Copy to root S3 dir (?)
+        ## Send URLs to VAL
+        ## Send HLS object to Encode
 
 
 def main():
