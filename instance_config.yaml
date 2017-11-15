@@ -105,7 +105,9 @@ val_username:
 val_transcript_create_url:
 val_video_transcript_status_url:
 
-
+# Celery Worker Config Information
+onsite_worker: False
+celery_threads: 1
 rabbitmq_broker:
 rabbitmq_pass:
 rabbitmq_user:
