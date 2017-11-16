@@ -49,7 +49,7 @@ class FileDiscovery(object):
         self.ftp_log = "/Users/Shared/edX1/LG/Transfers.log"
         self.wfm_log = "/Users/Shared/edX1/LG/WFM.log"
         self.ftp_faillog = "/Users/Shared/edX1/LG/FailedTransfers.log"
-        self.node_work_directory = kwargs.get('node_work_directory', WORK_DIRECTORY)
+        self.node_work_directory = kwargs.get('node_work_directory', INGEST_WORK_DIR)
 
     def about_video_ingest(self):
         """

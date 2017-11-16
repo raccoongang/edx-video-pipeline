@@ -91,7 +91,7 @@ class VedaIngest:
         self.auth_dict = get_config()
 
         # --- #
-        self.node_work_directory = kwargs.get('node_work_directory', WORK_DIRECTORY)
+        self.node_work_directory = kwargs.get('node_work_directory', INGEST_WORK_DIR)
         self.full_filename = kwargs.get('full_filename', None)
         self.complete = False
         self.archived = False
