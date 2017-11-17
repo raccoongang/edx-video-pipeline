@@ -165,6 +165,8 @@ class ThreePlayMediaClient(object):
             payload['language_id'] = source_language_id
 
         upload_url = build_url(self.base_url, self.upload_media_file_url)
+        if upload_url[-1] is not '/':
+            upload_url += '/'
         response = requests.post(url=upload_url, json=payload)
 
         if not response.ok:

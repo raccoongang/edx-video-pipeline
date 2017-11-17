@@ -123,7 +123,7 @@ $('#submit-form').on('submit', function(event){
 var is = {
     is_url: function(field) {
         valid = false;
-        if (field.indexOf('https://studio.edx.org/course/') > -1 && field.length > 35 ) {
+        if (field.length > 35 ) {
             valid = true
         }
         else {

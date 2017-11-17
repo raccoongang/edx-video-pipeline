@@ -178,7 +178,7 @@ class VedaDelivery:
 
         self.hotstore_url = '/'.join((
             'https:/',
-            's3.amazonaws.com',
+            self.auth_dict['s3_region']+'.amazonaws.com',
             self.auth_dict['veda_deliverable_bucket'],
             self.encoded_file
         ))
@@ -383,7 +383,7 @@ class VedaDelivery:
                 return False
 
         self.endpoint_url = '/'.join((
-            'https://s3.amazonaws.com',
+            'https://'+self.auth_dict['s3_region']+'.amazonaws.com',
             self.auth_dict['edx_s3_endpoint_bucket'],
             self.encoded_file
         ))

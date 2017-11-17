@@ -90,7 +90,7 @@ class VALAPICall():
             'username': self.auth_dict['val_username'],
             'password': self.auth_dict['val_password'],
         }
-        r = requests.post(self.auth_dict['val_token_url'], data=payload, timeout=self.auth_dict['global_timeout'])
+        r = requests.post(self.auth_dict['val_token_url'] + '/', data=payload, timeout=self.auth_dict['global_timeout'])
 
         if r.status_code != 200:
             ErrorObject.print_error(
@@ -333,7 +333,7 @@ class VALAPICall():
         """
         for retrieved_course in val_api_return['courses']:
             for course in list(self.val_data['courses']):
-                if retrieved_course.keys() == course.keys():
+                if [retrieved_course] == course.keys():
                     self.val_data['courses'].remove(course)
 
         self.profile_determiner(val_api_return=val_api_return)
@@ -386,7 +386,7 @@ class VALAPICall():
         }
 
         response = requests.post(
-            self.auth_dict['val_transcript_create_url'],
+            self.auth_dict['val_transcript_create_url'] + '/',
             json=post_data,
             headers=self.headers,
             timeout=20

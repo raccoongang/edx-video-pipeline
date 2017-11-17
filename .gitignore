@@ -18,3 +18,5 @@ reports/
 VEDA/settings/private.py
 
 youtube_callback/static_files/youtubekey
+
+instance_config.yaml
